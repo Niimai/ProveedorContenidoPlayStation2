@@ -22,12 +22,16 @@ public class ProveedorDeContenido extends ContentProvider {
     private static final int PS2_ONE_REG = 1;
     private static final int PS2_ALL_REGS = 2;
 
+    private static final int BITACORA_ONE_REG = 3;
+    private static final int BITACORA_ALL_REGS = 4;
+
     private SQLiteDatabase sqlDB;
     public DatabaseHelper dbHelper;
     private static final String DATABASE_NAME = "Juegos.db";
     private static final int DATABASE_VERSION = 35;
 
     private static final String PS2_TABLE_NAME = "PS2";
+    private static final String BITACORA_TABLE_NAME = "Bitacora";
 
     // Indicates an invalid content URI
     public static final int INVALID_URI = -1;
@@ -66,6 +70,15 @@ public class ProveedorDeContenido extends ContentProvider {
                 PS2_TABLE_NAME + "/#",
                 PS2_ONE_REG);
 
+        sUriMatcher.addURI(
+                Contrato.AUTHORITY,
+                BITACORA_TABLE_NAME,
+                BITACORA_ALL_REGS);
+        sUriMatcher.addURI(
+                Contrato.AUTHORITY,
+                BITACORA_TABLE_NAME + "/#",
+                BITACORA_ONE_REG);
+
         // Specifies a custom MIME type for the picture URL table
 
         sMimeTypes.put(
@@ -76,6 +89,15 @@ public class ProveedorDeContenido extends ContentProvider {
                 PS2_ONE_REG,
                 "vnd.android.cursor.item/vnd."+
                         Contrato.AUTHORITY + "." + PS2_TABLE_NAME);
+
+        sMimeTypes.put(
+                BITACORA_ALL_REGS,
+                "vnd.android.cursor.dir/vnd." +
+                        Contrato.AUTHORITY + "." + BITACORA_TABLE_NAME);
+        sMimeTypes.put(
+                BITACORA_ONE_REG,
+                "vnd.android.cursor.item/vnd."+
+                        Contrato.AUTHORITY + "." + BITACORA_TABLE_NAME);
     }
 
     public static class DatabaseHelper extends SQLiteOpenHelper {
@@ -105,7 +127,14 @@ public class ProveedorDeContenido extends ContentProvider {
                     + Contrato.PS2.ABREVIATURA + " TEXT ); "
             );
 
-            inicializarDatos(db);
+            db.execSQL("Create table "
+                    + BITACORA_TABLE_NAME
+                    + "( _id INTEGER PRIMARY KEY ON CONFLICT ROLLBACK AUTOINCREMENT, "
+                    + Contrato.Bitacora.ID_JUEGO + " INTEGER , "
+                    + Contrato.Bitacora.OPERACION + " INTEGER ); "
+            );
+
+            //inicializarDatos(db);
 
         }
 
@@ -124,6 +153,7 @@ public class ProveedorDeContenido extends ContentProvider {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + PS2_TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + BITACORA_TABLE_NAME);
 
             onCreate(db);
         }
@@ -159,6 +189,10 @@ public class ProveedorDeContenido extends ContentProvider {
             case PS2_ALL_REGS:
                 table = PS2_TABLE_NAME;
                 break;
+
+            case BITACORA_ALL_REGS:
+                table = BITACORA_TABLE_NAME;
+                break;
         }
 
         long rowId = sqlDB.insert(table, "", values);
@@ -189,6 +223,16 @@ public class ProveedorDeContenido extends ContentProvider {
             case PS2_ALL_REGS:
                 table = PS2_TABLE_NAME;
                 break;
+
+            case BITACORA_ONE_REG:
+                if (null == selection) selection = "";
+                selection += Contrato.Bitacora._ID + " = "
+                        + uri.getLastPathSegment();
+                table = BITACORA_TABLE_NAME;
+                break;
+            case BITACORA_ALL_REGS:
+                table = BITACORA_TABLE_NAME;
+                break;
         }
         int rows = sqlDB.delete(table, selection, selectionArgs);
         if (rows > 0) {
@@ -218,12 +262,24 @@ public class ProveedorDeContenido extends ContentProvider {
                         Contrato.PS2._ID + " ASC";
                 qb.setTables(PS2_TABLE_NAME);
                 break;
+
+            case BITACORA_ONE_REG:
+                if (null == selection) selection = "";
+                selection += Contrato.Bitacora._ID + " = "
+                        + uri.getLastPathSegment();
+                qb.setTables(BITACORA_TABLE_NAME);
+                break;
+            case BITACORA_ALL_REGS:
+                if (TextUtils.isEmpty(sortOrder)) sortOrder =
+                        Contrato.PS2._ID + " ASC";
+                qb.setTables(BITACORA_TABLE_NAME);
+                break;
         }
 
         Cursor c;
         c = qb.query(db, projection, selection, selectionArgs, null, null,
                 sortOrder);
-        c.setNotificationUri(getContext().getContentResolver(), uri);
+        //c.setNotificationUri(getContext().getContentResolver(), uri);
 
         return c;
     }
@@ -245,6 +301,17 @@ public class ProveedorDeContenido extends ContentProvider {
             case PS2_ALL_REGS:
                 table = PS2_TABLE_NAME;
                 break;
+
+            case BITACORA_ONE_REG:
+                if (null == selection) selection = "";
+                selection += Contrato.Bitacora._ID + " = "
+                        + uri.getLastPathSegment();
+                table = BITACORA_TABLE_NAME;
+                break;
+            case BITACORA_ALL_REGS:
+                table = BITACORA_TABLE_NAME;
+                break;
+
         }
 
         int rows = sqlDB.update(table, values, selection, selectionArgs);

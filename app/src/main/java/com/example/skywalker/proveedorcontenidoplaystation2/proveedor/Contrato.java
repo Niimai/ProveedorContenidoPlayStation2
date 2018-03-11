@@ -19,4 +19,14 @@ public class Contrato {
         public static final String NOMBRE = "Nombre";
         public static final String ABREVIATURA = "Abreviatura";
     }
+
+    public static final class Bitacora implements BaseColumns {
+
+        public static final Uri CONTENT_URI = Uri
+                .parse("content://"+AUTHORITY+"/Bitacora");
+
+        // Table column
+        public static final String ID_JUEGO = "ID_Juego";
+        public static final String OPERACION = "Operacion";
+    }
 }

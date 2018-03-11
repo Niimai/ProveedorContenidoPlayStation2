@@ -10,4 +10,8 @@ public class G {
 
     public static final int INSERTAR = 1;
     public static final int GUARDAR = 2;
+
+    public static final int OPERACION_INSERTAR = 1;
+    public static final int OPERACION_MODIFICAR = 2;
+    public static final int OPERACION_BORRAR = 3;
 }

@@ -7,7 +7,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.example.skywalker.proveedorcontenidoplaystation2.constantes.G;
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.Utilidades;
+import com.example.skywalker.proveedorcontenidoplaystation2.pojos.Bitacora;
 import com.example.skywalker.proveedorcontenidoplaystation2.pojos.PS2;
 
 import java.io.IOException;
@@ -17,24 +19,35 @@ import java.io.IOException;
  */
 
 public class PS2Proveedor {
-    static public void insert(ContentResolver resolvedor, PS2 ciclo, Context contexto){
+    static public Uri insertRecord(ContentResolver resolvedor, PS2 juego, Context contexto){
         Uri uri = Contrato.PS2.CONTENT_URI;
 
         ContentValues values = new ContentValues();
-        values.put(Contrato.PS2.NOMBRE, ciclo.getNombre());
-        values.put(Contrato.PS2.ABREVIATURA, ciclo.getAbreviatura());
+        values.put(Contrato.PS2.NOMBRE, juego.getNombre());
+        values.put(Contrato.PS2.ABREVIATURA, juego.getAbreviatura());
 
-        Uri uriResultado = resolvedor.insert(uri, values);
+        return resolvedor.insert(uri, values);
 
-        String cicloId = uriResultado.getLastPathSegment();
+        //String cicloId = uriResultado.getLastPathSegment();
 
-        if(ciclo.getImagen()!=null){
+        /*if(juego.getImagen()!=null){
             try {
-                Utilidades.storeImage(ciclo.getImagen(), contexto, "img_" + cicloId + ".jpg");
+                Utilidades.storeImage(juego.getImagen(), contexto, "img_" + cicloId + ".jpg");
             } catch (IOException e) {
                 Toast.makeText(contexto,"No se pudo guardar la imagen", Toast.LENGTH_LONG).show();
             }
-        }
+        }*/
+    }
+
+    static public void insertConBitacora (ContentResolver resolvedor, PS2 juego, Context contexto) {
+        Uri uri = insertRecord(resolvedor, juego, contexto);
+        juego.setID(Integer.parseInt(uri.getLastPathSegment()));
+
+        Bitacora bitacora = new Bitacora();
+        bitacora.setID_juego(juego.getID());
+        bitacora.setOperacion(G.OPERACION_INSERTAR);
+
+        BitacoraProveedor.insert(resolvedor, bitacora);
     }
 
     static public void delete(ContentResolver resolver, int cicloId){
@@ -42,18 +55,18 @@ public class PS2Proveedor {
         resolver.delete(uri, null, null);
     }
 
-    static public void update(ContentResolver resolver, PS2 ciclo, Context contexto){
-        Uri uri = Uri.parse(Contrato.PS2.CONTENT_URI + "/" + ciclo.getID());
+    static public void update(ContentResolver resolver, PS2 juego, Context contexto){
+        Uri uri = Uri.parse(Contrato.PS2.CONTENT_URI + "/" + juego.getID());
 
         ContentValues values = new ContentValues();
-        values.put(Contrato.PS2.NOMBRE, ciclo.getNombre());
-        values.put(Contrato.PS2.ABREVIATURA, ciclo.getAbreviatura());
+        values.put(Contrato.PS2.NOMBRE, juego.getNombre());
+        values.put(Contrato.PS2.ABREVIATURA, juego.getAbreviatura());
 
         resolver.update(uri, values, null, null);
 
-        if(ciclo.getImagen()!=null){
+        if(juego.getImagen()!=null){
             try {
-                Utilidades.storeImage(ciclo.getImagen(), contexto, "img_" + ciclo.getID() + ".jpg");
+                Utilidades.storeImage(juego.getImagen(), contexto, "img_" + juego.getID() + ".jpg");
             } catch (IOException e) {
                 Toast.makeText(contexto,"No se pudo guardar la imagen", Toast.LENGTH_LONG).show();
             }
@@ -70,11 +83,11 @@ public class PS2Proveedor {
         Cursor cursor = resolver.query(uri, projection, null, null, null);
 
         if (cursor.moveToFirst()){
-            PS2 ciclo = new PS2();
-            ciclo.setID(cursor.getInt(cursor.getColumnIndex(Contrato.PS2._ID)));
-            ciclo.setNombre(cursor.getString(cursor.getColumnIndex(Contrato.PS2.NOMBRE)));
-            ciclo.setAbreviatura(cursor.getString(cursor.getColumnIndex(Contrato.PS2.ABREVIATURA)));
-            return ciclo;
+            PS2 juego = new PS2();
+            juego.setID(cursor.getInt(cursor.getColumnIndex(Contrato.PS2._ID)));
+            juego.setNombre(cursor.getString(cursor.getColumnIndex(Contrato.PS2.NOMBRE)));
+            juego.setAbreviatura(cursor.getString(cursor.getColumnIndex(Contrato.PS2.ABREVIATURA)));
+            return juego;
         }
 
         return null;

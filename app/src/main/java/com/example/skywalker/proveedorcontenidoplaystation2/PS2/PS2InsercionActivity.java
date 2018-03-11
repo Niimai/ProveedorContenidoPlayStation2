@@ -144,7 +144,7 @@ public class PS2InsercionActivity extends AppCompatActivity {
 
 
         PS2 ciclo = new PS2(G.SIN_VALOR_INT, nombre, abreviatura, foto);
-        PS2Proveedor.insert(getContentResolver(),ciclo, this);
+        PS2Proveedor.insertRecord(getContentResolver(),ciclo, this);
         finish();
     }
 }
