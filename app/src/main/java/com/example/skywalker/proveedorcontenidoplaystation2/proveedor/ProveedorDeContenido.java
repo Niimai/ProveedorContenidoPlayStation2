@@ -28,7 +28,7 @@ public class ProveedorDeContenido extends ContentProvider {
     private SQLiteDatabase sqlDB;
     public DatabaseHelper dbHelper;
     private static final String DATABASE_NAME = "Juegos.db";
-    private static final int DATABASE_VERSION = 35;
+    private static final int DATABASE_VERSION = 3020;
 
     private static final String PS2_TABLE_NAME = "PS2";
     private static final String BITACORA_TABLE_NAME = "Bitacora";
