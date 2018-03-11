@@ -141,7 +141,7 @@ public class PS2ListFragment extends ListFragment
             switch(item.getItemId()){
                 case R.id.menu_contextual_borrar:
                     int PS2Id = (Integer) viewSeleccionado.getTag();
-                    PS2Proveedor.delete(getActivity().getContentResolver(), PS2Id);
+                    PS2Proveedor.deleteConBitacora(getActivity().getContentResolver(), PS2Id);
                     break;
                 case R.id.menu_contextual_editar:
                     Intent intent = new Intent(getActivity(), PS2ActualizacionActivity.class);

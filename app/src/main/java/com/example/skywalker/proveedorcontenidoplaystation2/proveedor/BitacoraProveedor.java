@@ -13,6 +13,7 @@ import com.example.skywalker.proveedorcontenidoplaystation2.pojos.Bitacora;
 import com.example.skywalker.proveedorcontenidoplaystation2.pojos.Bitacora;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Skywalker on 04/03/2018.
@@ -77,10 +78,37 @@ public class BitacoraProveedor {
             Bitacora.setID(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora._ID)));
             Bitacora.setID_juego(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora.ID_JUEGO)));
             Bitacora.setOperacion(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora.OPERACION)));
+
             return Bitacora;
         }
 
         return null;
+
+    }
+
+    static public ArrayList<Bitacora> readAll(ContentResolver resolver) {
+        Uri uri = Contrato.Bitacora.CONTENT_URI;
+
+        String[] projection = {Contrato.Bitacora._ID,
+                Contrato.Bitacora.ID_JUEGO,
+                Contrato.Bitacora.OPERACION};
+
+        Cursor cursor = resolver.query(uri, projection, null, null, null);
+
+        ArrayList<Bitacora> bitacoras = new ArrayList<>();
+        Bitacora bitacora;
+
+        while (cursor.moveToNext()){
+            bitacora = new Bitacora();
+
+            bitacora.setID(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora._ID)));
+            bitacora.setID_juego(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora.ID_JUEGO)));
+            bitacora.setOperacion(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora.OPERACION)));
+
+            bitacoras.add(bitacora);
+        }
+
+        return bitacoras;
 
     }
 }
