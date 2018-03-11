@@ -1,4 +1,4 @@
-package com.cubikosolutions.dampgl.ejemplopcpartes.volley;
+package com.example.skywalker.proveedorcontenidoplaystation2.volley;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -14,12 +14,12 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.cubikosolutions.dampgl.ejemplopcpartes.aplicacion.AppController;
-import com.cubikosolutions.dampgl.ejemplopcpartes.constantes.G;
-import com.cubikosolutions.dampgl.ejemplopcpartes.pojos.Parte;
-import com.cubikosolutions.dampgl.ejemplopcpartes.proveedor.BitacoraProveedor;
-import com.cubikosolutions.dampgl.ejemplopcpartes.proveedor.ParteProveedor;
-import com.cubikosolutions.dampgl.ejemplopcpartes.sync.Sincronizacion;
+import com.example.skywalker.proveedorcontenidoplaystation2.aplicacion.AppController;
+import com.example.skywalker.proveedorcontenidoplaystation2.constantes.G;
+import com.example.skywalker.proveedorcontenidoplaystation2.pojos.PS2;
+import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.BitacoraProveedor;
+import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.PS2Proveedor;
+import com.example.skywalker.proveedorcontenidoplaystation2.sync.Sincronizacion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,12 +32,12 @@ import java.util.Map;
 
 
 
-public class ParteVolley {
-    final static String ruta = G.RUTA_SERVIDOR + "/PartesOnline";
+public class PS2Volley {
+    final static String ruta = G.RUTA_SERVIDOR + "/PS2";
 
 
-    public static void getAllParte(){
-        String tag_json_obj = "getAllParte"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+    public static void getAllJuego(){
+        String tag_json_obj = "getAllJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
         String url = ruta;
         // prepare the Request
 
@@ -66,17 +66,15 @@ public class ParteVolley {
         AppController.getInstance().addToRequestQueue(getRequest, tag_json_obj);
     }
 
-    public static void addParte(Parte parte, final boolean conBitacora, final int idBitacora){
-        String tag_json_obj = "addParte"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+    public static void addJuego(PS2 juego, final boolean conBitacora, final int idBitacora){
+        String tag_json_obj = "addJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
         String url = ruta;
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("PK_ID", parte.getID());
-            jsonObject.put("fecha", parte.getFecha());
-            jsonObject.put("cliente", parte.getCliente());
-            jsonObject.put("motivo", parte.getMotivo());
-            jsonObject.put("resolucion", parte.getResolucion());
+            jsonObject.put("PK_ID", juego.getID());
+            jsonObject.put("nombre", juego.getNombre());
+            jsonObject.put("abreviatura", juego.getAbreviatura());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -90,7 +88,7 @@ public class ParteVolley {
                     public void onResponse(JSONObject response) {
                         // response
                         //Log.d("Response", response.toString());
-                        if(conBitacora) BitacoraProveedor.deleteRecord(AppController.getResolvedor(), idBitacora);
+                        if(conBitacora) BitacoraProveedor.delete(AppController.getResolvedor(), idBitacora);
                         AppController.getInstance().getSincronizacion().setEsperandoRespuestaDeServidor(false);
                     }
                 },
@@ -108,17 +106,15 @@ public class ParteVolley {
         AppController.getInstance().addToRequestQueue(postRequest, tag_json_obj);
     }
 
-    public static void updateParte(Parte parte, final boolean conBitacora, final int idBitacora){
-        String tag_json_obj = "updateParte"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
-        String url = ruta + "/" + parte.getID();
+    public static void updateJuego(PS2 juego, final boolean conBitacora, final int idBitacora){
+        String tag_json_obj = "updateJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+        String url = ruta + "/" + juego.getID();
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("PK_ID", parte.getID());
-            jsonObject.put("fecha", parte.getFecha());
-            jsonObject.put("cliente", parte.getCliente());
-            jsonObject.put("motivo", parte.getMotivo());
-            jsonObject.put("resolucion", parte.getResolucion());
+            jsonObject.put("PK_ID", juego.getID());
+            jsonObject.put("nombre", juego.getNombre());
+            jsonObject.put("abreviatura", juego.getAbreviatura());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -132,7 +128,7 @@ public class ParteVolley {
                     public void onResponse(JSONObject response) {
                         // response
                         //Log.d("Response", response.toString());
-                        if(conBitacora) BitacoraProveedor.deleteRecord(AppController.getResolvedor(), idBitacora);
+                        if(conBitacora) BitacoraProveedor.delete(AppController.getResolvedor(), idBitacora);
                         AppController.getInstance().getSincronizacion().setEsperandoRespuestaDeServidor(false);
                     }
                 },
@@ -150,8 +146,8 @@ public class ParteVolley {
         AppController.getInstance().addToRequestQueue(putRequest, tag_json_obj);
     }
 
-    public static void delParte(int id, final boolean conBitacora, final int idBitacora){
-        String tag_json_obj = "updateParte"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+    public static void delJuego(int id, final boolean conBitacora, final int idBitacora){
+        String tag_json_obj = "updateJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
         String url = ruta + "/" + String.valueOf(id);
 
         AppController.getInstance().getSincronizacion().setEsperandoRespuestaDeServidor(true);
@@ -162,7 +158,7 @@ public class ParteVolley {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        if(conBitacora) BitacoraProveedor.deleteRecord(AppController.getResolvedor(), idBitacora);
+                        if(conBitacora) BitacoraProveedor.delete(AppController.getResolvedor(), idBitacora);
                         AppController.getInstance().getSincronizacion().setEsperandoRespuestaDeServidor(false);
                     }
                 },

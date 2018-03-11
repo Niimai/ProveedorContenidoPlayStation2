@@ -157,7 +157,7 @@ public class PS2ActualizacionActivity extends AppCompatActivity {
             return;
         }
 
-        PS2 juego = new PS2(PS2Id, nombre, abreviatura, foto);
+        PS2 juego = new PS2(PS2Id, nombre, abreviatura/*, foto*/);
         PS2Proveedor.updateConBitacora(getContentResolver(), juego, this);
         finish();
     }

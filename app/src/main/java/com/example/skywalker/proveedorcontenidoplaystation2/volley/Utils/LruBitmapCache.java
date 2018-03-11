@@ -1,6 +1,4 @@
-package com.cubikosolutions.dampgl.ejemplopcpartes.volley.Utils;
-
-
+package com.example.skywalker.proveedorcontenidoplaystation2.volley.Utils;
 
 import com.android.volley.toolbox.ImageLoader.ImageCache;
 

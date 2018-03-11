@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
 
-import com.cubikosolutions.dampgl.ejemplopcpartes.aplicacion.AppController;
+import com.example.skywalker.proveedorcontenidoplaystation2.aplicacion.AppController;
 
 /**
  * Handle the transfer of data between a server and an

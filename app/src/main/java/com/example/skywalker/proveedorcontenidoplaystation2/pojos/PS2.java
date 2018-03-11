@@ -21,7 +21,7 @@ public class PS2 {
         this.setImagen(null);
     }
 
-    public PS2(int ID, String nombre, String abreviatura, Bitmap imagen) {
+    public PS2(int ID, String nombre, String abreviatura ) {
         this.ID = ID;
         this.nombre = nombre;
         this.setAbreviatura(abreviatura);
@@ -29,13 +29,9 @@ public class PS2 {
     }
 
 
-    public Bitmap getImagen() {
-        return imagen;
-    }
+    public Bitmap getImagen() {return imagen;}
 
-    public void setImagen(Bitmap imagen) {
-        this.imagen = imagen;
-    }
+    public void setImagen(Bitmap imagen) {this.imagen = imagen;}
 
     public int getID() {
         return ID;

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 
 public class Sincronizacion {
-    private static final String LOGTAG = "PartesOnline - Sincronizacion";
+    private static final String LOGTAG = "PS2 - Sincronizacion";
     private static ContentResolver resolvedor;
     private static Context contexto;
     private static boolean esperandoRespuestaDeServidor = false;
@@ -65,7 +65,7 @@ public class Sincronizacion {
                     PS2 juego = null;
                     try {
                         juego = PS2Proveedor.read(resolvedor, bitacora.getID_juego());
-                        ParteVolley.addJuego(juego, true, bitacora.getID());
+                        PS2Volley.addJuego(juego, true, bitacora.getID());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -73,13 +73,13 @@ public class Sincronizacion {
                 case G.OPERACION_MODIFICAR:
                     try {
                         juego = PS2Proveedor.read(resolvedor, bitacora.getID_juego());
-                        ParteVolley.updateParte(juego, true, bitacora.getID());
+                        PS2Volley.updateJuego(juego, true, bitacora.getID());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
                 case G.OPERACION_BORRAR:
-                    ParteVolley.delParte(bitacora.getID_juego(), true, bitacora.getID());
+                    PS2Volley.delJuego(bitacora.getID_juego(), true, bitacora.getID());
                     break;
             }
             Log.i("sincronizacion", "acabo de enviar");
@@ -87,7 +87,7 @@ public class Sincronizacion {
     }
 
     private static void recibirActualizacionesDelServidor(){
-        ParteVolley.getAllParte();
+        PS2Volley.getAllJuego();
     }
 
     public static void realizarActualizacionesDelServidorUnaVezRecibidas(JSONArray jsonArray){
@@ -95,23 +95,23 @@ public class Sincronizacion {
 
         try {
             ArrayList<Integer> identificadoresDeRegistrosActualizados = new ArrayList<Integer>();
-            ArrayList<juego> registrosNuevos = new ArrayList<>();
-            ArrayList<Parte> registrosViejos = PS2Proveedor.readAll(resolvedor);
+            ArrayList<PS2> registrosNuevos = new ArrayList<>();
+            ArrayList<PS2> registrosViejos = PS2Proveedor.readAll(resolvedor);
             ArrayList<Integer> identificadoresDeRegistrosViejos = new ArrayList<Integer>();
-            for(Parte i : registrosViejos) identificadoresDeRegistrosViejos.add(i.getID());
+            for(PS2 i : registrosViejos) identificadoresDeRegistrosViejos.add(i.getID());
 
             JSONObject obj = null;
             for (int i = 0; i < jsonArray.length(); i++ ){
                 obj = jsonArray.getJSONObject(i);
-                registrosNuevos.add(new Parte(obj.getInt("PK_ID"), obj.getString("fecha"), obj.getString("cliente"), obj.getString("motivo"), obj.getString("resolucion")));
+                registrosNuevos.add(new PS2(obj.getInt("PK_ID"), obj.getString("nombre"), obj.getString("abreviatura")));
             }
 
             for(PS2 juego: registrosNuevos) {
                 try {
                     if(identificadoresDeRegistrosViejos.contains(juego.getID())) {
-                        PS2Proveedor.updateRecord(resolvedor, juego);
+                        PS2Proveedor.updateRecord(resolvedor, juego, contexto);
                     } else {
-                        PS2Proveedor.insertRecord(resolvedor, juego);
+                        PS2Proveedor.insertRecord(resolvedor, juego, contexto);
                     }
                     identificadoresDeRegistrosActualizados.add(juego.getID());
                 } catch (Exception e){
@@ -131,7 +131,7 @@ public class Sincronizacion {
                 }
             }
 
-           // ParteVolley.getAllParte(); //Los baja y los guarda en SQLite
+           // PS2Volley.getAllJuego(); //Los baja y los guarda en SQLite
         } catch (Exception e) {
             e.printStackTrace();
         }

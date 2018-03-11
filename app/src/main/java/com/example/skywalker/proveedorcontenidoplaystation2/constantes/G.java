@@ -6,6 +6,7 @@ package com.example.skywalker.proveedorcontenidoplaystation2.constantes;
 
 public class G {
 
+    public static final String RUTA_SERVIDOR = "http://http://localhost:8080/Playstation2/webresources/PS2";
     public static final int SYNC_INTERVAL = 60;
     public static final boolean VERSION_ADMINISTRADOR = false;
     public static final int SIN_VALOR_INT = -1;

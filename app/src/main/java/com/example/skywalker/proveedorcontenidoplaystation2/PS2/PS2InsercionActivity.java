@@ -143,7 +143,7 @@ public class PS2InsercionActivity extends AppCompatActivity {
         }
 
 
-        PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura, foto);
+        PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura/*, foto*/);
         PS2Proveedor.insertConBitacora(getContentResolver(),juego, this);
         finish();
     }
