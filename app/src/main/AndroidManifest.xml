@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.skywalker.proveedorcontenidoplaystation2">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PS2.PS2Activity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.skywalker.proveedorcontenidoplaystation2.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PS2.PS2InsercionActivity"
+            android:parentActivityName=".PS2.PS2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PS2.PS2Activity" />
+        </activity>
+        <activity
+            android:name=".PS2.PS2ActualizacionActivity"
+            android:parentActivityName=".PS2.PS2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PS2.PS2Activity" />
+        </activity>
+        <provider
+            android:name=".proveedor.ProveedorDeContenido"
+            android:authorities="com.example.skywalker.proveedorcontenidoplaystation2.proveedor.ProveedorDeContenido"
+            android:enabled="true"
+            android:exported="true" />
+    </application>
+
+</manifest>
