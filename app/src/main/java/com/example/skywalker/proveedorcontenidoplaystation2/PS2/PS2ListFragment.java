@@ -66,9 +66,11 @@ public class PS2ListFragment extends ListFragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        MenuItem menuItem = menu.add(Menu.NONE, G.INSERTAR, Menu.NONE, "INSERTAR");
-        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        menuItem.setIcon(R.drawable.ic_nuevo_registro);
+        if(G.VERSION_ADMINISTRADOR) {
+            MenuItem menuItem = menu.add(Menu.NONE, G.INSERTAR, Menu.NONE, "INSERTAR");
+            menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            menuItem.setIcon(R.drawable.ic_nuevo_registro);
+        }
     }
 
     @Override
@@ -108,18 +110,20 @@ public class PS2ListFragment extends ListFragment
 
         getLoaderManager().initLoader(0, null, mCallbacks);
 
-        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                if(mActionMode!=null){
-                    return false;
+        if(G.VERSION_ADMINISTRADOR) {
+            getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (mActionMode != null) {
+                        return false;
+                    }
+                    mActionMode = getActivity().startActionMode(mActionModeCallback);
+                    view.setSelected(true);
+                    viewSeleccionado = view;
+                    return true;
                 }
-                mActionMode = getActivity().startActionMode(mActionModeCallback);
-                view.setSelected(true);
-                viewSeleccionado = view;
-                return true;
-            }
-        });
+            });
+        }
     }
 
     ActionMode.Callback mActionModeCallback = new ActionMode.Callback(){
@@ -154,8 +158,8 @@ public class PS2ListFragment extends ListFragment
                     intent.putExtra("Abreviatura", PS2.getAbreviatura());
                     startActivity(intent);
                     break;
-                default:
-                    return false;
+                //default:
+                    //return false;
             }
             //mode.finish();
             mActionMode.finish();

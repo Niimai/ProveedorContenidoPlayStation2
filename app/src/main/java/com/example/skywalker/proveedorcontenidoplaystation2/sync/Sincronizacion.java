@@ -46,7 +46,7 @@ public class Sincronizacion {
 
         if(G.VERSION_ADMINISTRADOR){
             enviarActualizacionesAlServidor();
-            recibirActualizacionesDelServidor();
+            //recibirActualizacionesDelServidor();
         } else {
             recibirActualizacionesDelServidor();
         }
