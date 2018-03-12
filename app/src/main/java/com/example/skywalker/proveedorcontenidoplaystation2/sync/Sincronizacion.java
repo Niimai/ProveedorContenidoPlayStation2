@@ -109,9 +109,9 @@ public class Sincronizacion {
             for(PS2 juego: registrosNuevos) {
                 try {
                     if(identificadoresDeRegistrosViejos.contains(juego.getID())) {
-                        PS2Proveedor.updateRecord(resolvedor, juego, contexto);
+                        PS2Proveedor.updateRecord(resolvedor, juego);
                     } else {
-                        PS2Proveedor.insertRecord(resolvedor, juego, contexto);
+                        PS2Proveedor.insertRecord(resolvedor, juego);
                     }
                     identificadoresDeRegistrosActualizados.add(juego.getID());
                 } catch (Exception e){

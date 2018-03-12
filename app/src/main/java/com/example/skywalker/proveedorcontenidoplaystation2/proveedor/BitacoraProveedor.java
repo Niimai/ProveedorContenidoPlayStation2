@@ -29,7 +29,7 @@ public class BitacoraProveedor {
 
         Uri uriResultado = resolvedor.insert(uri, values);
 
-        String bitacoraId = uriResultado.getLastPathSegment();
+        //String bitacoraId = uriResultado.getLastPathSegment();
 
         /*if(Bitacora.getImagen()!=null){
             try {
@@ -46,7 +46,7 @@ public class BitacoraProveedor {
         resolver.delete(uri, null, null);
     }
 
-    static public void update(ContentResolver resolver, Bitacora bitacora){
+    static public void update(ContentResolver resolver, Bitacora bitacora, Context contexto){
         Uri uri = Uri.parse(Contrato.Bitacora.CONTENT_URI + "/" + bitacora.getID());
 
         ContentValues values = new ContentValues();
@@ -75,6 +75,7 @@ public class BitacoraProveedor {
 
         if (cursor.moveToFirst()){
             Bitacora Bitacora = new Bitacora();
+
             Bitacora.setID(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora._ID)));
             Bitacora.setID_juego(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora.ID_JUEGO)));
             Bitacora.setOperacion(cursor.getInt(cursor.getColumnIndex(Contrato.Bitacora.OPERACION)));
@@ -107,7 +108,7 @@ public class BitacoraProveedor {
 
             bitacoras.add(bitacora);
         }
-
+        cursor.close();
         return bitacoras;
 
     }

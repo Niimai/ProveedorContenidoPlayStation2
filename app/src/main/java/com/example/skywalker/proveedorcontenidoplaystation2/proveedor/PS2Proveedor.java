@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 
 public class PS2Proveedor {
-    static public Uri insertRecord(ContentResolver resolvedor, PS2 juego, Context contexto){
+    static public Uri insertRecord(ContentResolver resolvedor, PS2 juego){
         Uri uri = Contrato.PS2.CONTENT_URI;
 
         ContentValues values = new ContentValues();
@@ -29,19 +29,19 @@ public class PS2Proveedor {
 
         return resolvedor.insert(uri, values);
 
-        //String cicloId = uriResultado.getLastPathSegment();
+        //String juegoId = uriResultado.getLastPathSegment();
 
         /*if(juego.getImagen()!=null){
             try {
-                Utilidades.storeImage(juego.getImagen(), contexto, "img_" + cicloId + ".jpg");
+                Utilidades.storeImage(juego.getImagen(), contexto, "img_" + juegoId + ".jpg");
             } catch (IOException e) {
                 Toast.makeText(contexto,"No se pudo guardar la imagen", Toast.LENGTH_LONG).show();
             }
         }*/
     }
 
-    static public void insertConBitacora (ContentResolver resolvedor, PS2 juego, Context contexto) {
-        Uri uri = insertRecord(resolvedor, juego, contexto);
+    static public void insertConBitacora (ContentResolver resolvedor, PS2 juego) {
+        Uri uri = insertRecord(resolvedor, juego);
         juego.setID(Integer.parseInt(uri.getLastPathSegment()));
 
         Bitacora bitacora = new Bitacora();
@@ -66,7 +66,7 @@ public class PS2Proveedor {
         BitacoraProveedor.insert(resolvedor, bitacora);
     }
 
-    static public void updateRecord(ContentResolver resolver, PS2 juego, Context contexto){
+    static public void updateRecord(ContentResolver resolver, PS2 juego){
         Uri uri = Uri.parse(Contrato.PS2.CONTENT_URI + "/" + juego.getID());
 
         ContentValues values = new ContentValues();
@@ -75,17 +75,17 @@ public class PS2Proveedor {
 
         resolver.update(uri, values, null, null);
 
-        if(juego.getImagen()!=null){
+    /*    if(juego.getImagen()!=null){
             try {
                 Utilidades.storeImage(juego.getImagen(), contexto, "img_" + juego.getID() + ".jpg");
             } catch (IOException e) {
                 Toast.makeText(contexto,"No se pudo guardar la imagen", Toast.LENGTH_LONG).show();
             }
-        }
+        } */
     }
 
-    static public void updateConBitacora (ContentResolver resolvedor, PS2 juego, Context contexto) {
-        updateRecord(resolvedor, juego, contexto);
+    static public void updateConBitacora (ContentResolver resolvedor, PS2 juego) {
+        updateRecord(resolvedor, juego);
 
 
         Bitacora bitacora = new Bitacora();
@@ -95,8 +95,8 @@ public class PS2Proveedor {
         BitacoraProveedor.insert(resolvedor, bitacora);
     }
 
-    static public PS2 read(ContentResolver resolver, int cicloId) {
-        Uri uri = Uri.parse(Contrato.PS2.CONTENT_URI + "/" + cicloId);
+    static public PS2 read(ContentResolver resolver, int juegoId) {
+        Uri uri = Uri.parse(Contrato.PS2.CONTENT_URI + "/" + juegoId);
 
         String[] projection = {Contrato.PS2._ID,
                 Contrato.PS2.NOMBRE,

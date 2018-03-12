@@ -157,7 +157,8 @@ public class PS2ListFragment extends ListFragment
                 default:
                     return false;
             }
-            mode.finish();
+            //mode.finish();
+            mActionMode.finish();
             return true;
         }
 
