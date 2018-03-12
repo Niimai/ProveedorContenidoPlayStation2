@@ -41,16 +41,16 @@ public class PS2InsercionActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_ps2_detalle);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_PS2_detalle);
+        Toolbar toolbar = findViewById(R.id.toolbar_PS2_detalle);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        editTextPS2Nombre = (EditText) findViewById(R.id.editTextPS2Nombre);
-        editTextPS2Abreviatura = (EditText) findViewById(R.id.editTextPS2Abreviatura);
+        editTextPS2Nombre = findViewById(R.id.editTextPS2Nombre);
+        editTextPS2Abreviatura = findViewById(R.id.editTextPS2Abreviatura);
 
-        imageViewPS2 = (ImageView) findViewById(R.id.image_view_PS2);
+        imageViewPS2 = findViewById(R.id.image_view_PS2);
 
-        ImageButton imageButtonCamara = (ImageButton) findViewById(R.id.image_button_camara);
+        ImageButton imageButtonCamara = findViewById(R.id.image_button_camara);
         imageButtonCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +58,7 @@ public class PS2InsercionActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton imageButtonGaleria = (ImageButton) findViewById(R.id.image_button_galeria);
+        ImageButton imageButtonGaleria = findViewById(R.id.image_button_galeria);
         imageButtonGaleria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,7 +143,7 @@ public class PS2InsercionActivity extends AppCompatActivity {
         }
 
 
-     //   PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura/*, foto*/);
+        //PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura/*, foto*/);
         PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura);
         PS2Proveedor.insertConBitacora(getContentResolver(),juego);
         finish();

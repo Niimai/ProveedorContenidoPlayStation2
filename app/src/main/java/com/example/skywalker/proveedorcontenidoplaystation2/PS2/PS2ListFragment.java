@@ -158,8 +158,8 @@ public class PS2ListFragment extends ListFragment
                     intent.putExtra("Abreviatura", PS2.getAbreviatura());
                     startActivity(intent);
                     break;
-                //default:
-                    //return false;
+                default:
+                    return false;
             }
             //mode.finish();
             mActionMode.finish();
@@ -221,13 +221,13 @@ public class PS2ListFragment extends ListFragment
             String nombre = cursor.getString(cursor.getColumnIndex(Contrato.PS2.NOMBRE));
             String abreviatura = cursor.getString(cursor.getColumnIndex(Contrato.PS2.ABREVIATURA));
 
-            TextView textviewNombre = (TextView) view.findViewById(R.id.textview_PS2_list_item_nombre);
+            TextView textviewNombre = view.findViewById(R.id.textview_PS2_list_item_nombre);
             textviewNombre.setText(nombre);
 
-            TextView textviewAbreviatura = (TextView) view.findViewById(R.id.textview_PS2_list_item_abreviatura);
+            TextView textviewAbreviatura = view.findViewById(R.id.textview_PS2_list_item_abreviatura);
             textviewAbreviatura.setText(abreviatura);
 
-            ImageView image = (ImageView) view.findViewById(R.id.image_view);
+            ImageView image = view.findViewById(R.id.image_view);
 
             try {
                 Utilidades.loadImageFromStorage(getActivity(), "img_" + ID + ".jpg", image);

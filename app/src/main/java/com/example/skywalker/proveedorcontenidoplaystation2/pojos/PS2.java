@@ -12,26 +12,25 @@ public class PS2 {
     private int ID;
     private String nombre;
     private String abreviatura;
-    //private Bitmap imagen;
+  //private Bitmap imagen;
 
     public PS2(){
-       // this.ID = G.SIN_VALOR_INT;
-        //this.nombre = G.SIN_VALOR_STRING;
-        //this.setAbreviatura(G.SIN_VALOR_STRING);
+        this.ID = G.SIN_VALOR_INT;
+        this.nombre = G.SIN_VALOR_STRING;
+        this.abreviatura = G.SIN_VALOR_STRING;
         //this.setImagen(null);
     }
 
-    public PS2(int ID, String nombre, String abreviatura ) {
+    public PS2(int ID, String nombre, String abreviatura) {
         this.ID = ID;
         this.nombre = nombre;
-        this.setAbreviatura(abreviatura);
-      //  this.imagen = imagen;
+        this.abreviatura = abreviatura;
+      //this.imagen = imagen;
     }
 
+    //public Bitmap getImagen() {return imagen;}
 
-   // public Bitmap getImagen() {return imagen;}
-
-//    public void setImagen(Bitmap imagen) {this.imagen = imagen;}
+    //public void setImagen(Bitmap imagen) {this.imagen = imagen;}
 
     public int getID() {
         return ID;
