@@ -51,7 +51,8 @@
             android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:textColor="?android:attr/colorPrimaryDark"
+            android:visibility="gone">
 
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"

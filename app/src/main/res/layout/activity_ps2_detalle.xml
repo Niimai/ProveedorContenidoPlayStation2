@@ -54,7 +54,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Abreviatura"
+                android:hint="Desarrolladora"
                 android:id="@+id/editTextPS2Abreviatura"/>
         </android.support.design.widget.TextInputLayout>
 
