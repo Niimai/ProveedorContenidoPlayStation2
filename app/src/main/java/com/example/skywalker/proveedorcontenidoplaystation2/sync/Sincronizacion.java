@@ -75,13 +75,13 @@ public class Sincronizacion {
                 case G.OPERACION_MODIFICAR:
                     try {
                         juego = PS2Proveedor.read(resolvedor, bitacora.getID_juego());
-                        PS2Volley.updateJuego(juego, true, bitacora.getID());
+                        PS2Volley.updatePlaystation2(juego, true, bitacora.getID());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
                 case G.OPERACION_BORRAR:
-                    PS2Volley.delJuego(bitacora.getID_juego(), true, bitacora.getID());
+                    PS2Volley.delPlaystation2(bitacora.getID_juego(), true, bitacora.getID());
                     break;
             }
             Log.i("sincronizacion", "acabo de enviar");
@@ -98,7 +98,7 @@ public class Sincronizacion {
         try {
             ArrayList<Integer> identificadoresDeRegistrosActualizados = new ArrayList<Integer>();
             ArrayList<PS2> registrosNuevos = new ArrayList<>();
-            ArrayList<PS2> registrosViejos = PS2Proveedor.readAll(resolvedor);
+            ArrayList<PS2> registrosViejos = PS2Proveedor.readAllRecord(resolvedor);
             ArrayList<Integer> identificadoresDeRegistrosViejos = new ArrayList<Integer>();
             for(PS2 i : registrosViejos) identificadoresDeRegistrosViejos.add(i.getID());
 

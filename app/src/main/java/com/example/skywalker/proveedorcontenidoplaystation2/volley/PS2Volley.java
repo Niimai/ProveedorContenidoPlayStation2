@@ -106,8 +106,8 @@ public class PS2Volley {
         AppController.getInstance().addToRequestQueue(postRequest, tag_json_obj);
     }
 
-    public static void updateJuego(PS2 juego, final boolean conBitacora, final int idBitacora){
-        String tag_json_obj = "updateJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+    public static void updatePlaystation2(PS2 juego, final boolean conBitacora, final int idBitacora){
+        String tag_json_obj = "updatePlaystation2"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
         String url = ruta + "/" + juego.getID();
 
         JSONObject jsonObject = new JSONObject();
@@ -146,8 +146,8 @@ public class PS2Volley {
         AppController.getInstance().addToRequestQueue(putRequest, tag_json_obj);
     }
 
-    public static void delJuego(int id, final boolean conBitacora, final int idBitacora){
-        String tag_json_obj = "updateJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+    public static void delPlaystation2(int id, final boolean conBitacora, final int idBitacora){
+        String tag_json_obj = "updatePlaystation2"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
         String url = ruta + "/" + String.valueOf(id);
 
         AppController.getInstance().getSincronizacion().setEsperandoRespuestaDeServidor(true);

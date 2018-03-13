@@ -123,7 +123,7 @@ public class PS2Proveedor {
 
     }
 
-    static public ArrayList<PS2> readAll(ContentResolver resolver) {
+    static public ArrayList<PS2> readAllRecord(ContentResolver resolver) {
         Uri uri = Contrato.PS2.CONTENT_URI;
 
         String[] projection = {
