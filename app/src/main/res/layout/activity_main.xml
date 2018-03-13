@@ -19,6 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/buttonGaleria"
         android:layout_marginTop="60dp"
+        android:textColor="@android:color/holo_blue_dark"
         android:text="Listado de Juegos" />
 
     <Button
@@ -26,6 +27,7 @@
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_alignStart="@+id/buttonIrALosJuegos"
+        android:textColor="@android:color/holo_blue_dark"
         android:layout_below="@+id/buttonIrALosJuegos"
         android:text="Sacar Foto" />
 
@@ -34,6 +36,7 @@
         android:layout_width="160dp"
         android:layout_height="55dp"
         android:layout_below="@+id/buttonCamara"
+        android:textColor="@android:color/holo_blue_dark"
         android:layout_centerHorizontal="true"
         android:text="Elegir Foto de la Galeria" />
 

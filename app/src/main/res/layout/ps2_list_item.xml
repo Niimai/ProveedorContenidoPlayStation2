@@ -30,13 +30,13 @@
 				android:id="@+id/textview_PS2_list_item_abreviatura"
 				android:layout_marginTop="@dimen/appbar_padding_top"
 				android:layout_marginBottom="@dimen/appbar_padding_top"
-				android:textColor="@android:color/holo_red_dark" />
+				android:textColor="@android:color/holo_blue_dark" />
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:id="@+id/textview_PS2_list_item_nombre"
 				android:layout_marginBottom="@dimen/appbar_padding_top"
-				android:textColor="@android:color/holo_red_dark" />
+				android:textColor="@android:color/holo_blue_dark" />
 		</LinearLayout>
 	</LinearLayout>
 
