@@ -27,6 +27,7 @@ public class BitacoraProveedor {
         values.put(Contrato.Bitacora.ID_JUEGO, bitacora.getID_juego());
         values.put(Contrato.Bitacora.OPERACION, bitacora.getOperacion());
 
+
         Uri uriResultado = resolvedor.insert(uri, values);
 
         //String bitacoraId = uriResultado.getLastPathSegment();

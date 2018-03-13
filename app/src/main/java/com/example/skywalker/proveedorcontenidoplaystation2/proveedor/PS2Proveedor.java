@@ -24,10 +24,17 @@ public class PS2Proveedor {
         Uri uri = Contrato.PS2.CONTENT_URI;
 
         ContentValues values = new ContentValues();
+        //values.put(Contrato.PS2.NOMBRE, juego.getNombre());
+        //values.put(Contrato.PS2.ABREVIATURA, juego.getAbreviatura());
+
         values.put(Contrato.PS2.NOMBRE, juego.getNombre());
         values.put(Contrato.PS2.ABREVIATURA, juego.getAbreviatura());
 
-        return resolvedor.insert(uri, values);
+        Uri uriResultado = resolvedor.insert(uri, values);
+
+        return uriResultado;
+
+        //return resolvedor.insert(uri, values);
 
         //String juegoId = uriResultado.getLastPathSegment();
 

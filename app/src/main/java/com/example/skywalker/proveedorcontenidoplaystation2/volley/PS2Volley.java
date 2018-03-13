@@ -33,11 +33,11 @@ import java.util.Map;
 
 
 public class PS2Volley {
-    final static String ruta = G.RUTA_SERVIDOR + "/PS2";
+    final static String ruta = G.RUTA_SERVIDOR + "/playstation2";
 
 
-    public static void getAllJuego(){
-        String tag_json_obj = "getAllJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+    public static void getAllPlaystation2(){
+        String tag_json_obj = "getAllPlaystation2"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
         String url = ruta;
         // prepare the Request
 
@@ -66,15 +66,15 @@ public class PS2Volley {
         AppController.getInstance().addToRequestQueue(getRequest, tag_json_obj);
     }
 
-    public static void addJuego(PS2 juego, final boolean conBitacora, final int idBitacora){
-        String tag_json_obj = "addJuego"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
+    public static void addPlaystation2(PS2 ps2, final boolean conBitacora, final int idBitacora){
+        String tag_json_obj = "addPlaystation2"; //En realidad debería ser un identificar único para luego poder cancelar la petición.
         String url = ruta;
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("PK_ID", juego.getID());
-            jsonObject.put("nombre", juego.getNombre());
-            jsonObject.put("abreviatura", juego.getAbreviatura());
+            jsonObject.put("PK_ID", ps2.getID());
+            jsonObject.put("nombre", ps2.getNombre());
+            jsonObject.put("abreviatura", ps2.getAbreviatura());
         } catch (JSONException e) {
             e.printStackTrace();
         }

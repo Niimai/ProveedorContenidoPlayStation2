@@ -26,7 +26,7 @@ public class Sincronizacion {
     public Sincronizacion(Context contexto){
         this.resolvedor = contexto.getContentResolver();
         this.contexto = contexto;
-        recibirActualizacionesDelServidor(); //La primera vez se cargan los datos siempre
+        //recibirActualizacionesDelServidor(); //La primera vez se cargan los datos siempre
     }
 
     public synchronized static boolean isEsperandoRespuestaDeServidor() {
@@ -45,8 +45,10 @@ public class Sincronizacion {
         }
 
         if(G.VERSION_ADMINISTRADOR){
+
             enviarActualizacionesAlServidor();
-            //recibirActualizacionesDelServidor();
+            recibirActualizacionesDelServidor();
+
         } else {
             recibirActualizacionesDelServidor();
         }
@@ -65,7 +67,7 @@ public class Sincronizacion {
                     PS2 juego = null;
                     try {
                         juego = PS2Proveedor.read(resolvedor, bitacora.getID_juego());
-                        PS2Volley.addJuego(juego, true, bitacora.getID());
+                        PS2Volley.addPlaystation2(juego, true, bitacora.getID());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -87,7 +89,7 @@ public class Sincronizacion {
     }
 
     private static void recibirActualizacionesDelServidor(){
-        PS2Volley.getAllJuego();
+        PS2Volley.getAllPlaystation2();
     }
 
     public static void realizarActualizacionesDelServidorUnaVezRecibidas(JSONArray jsonArray){

@@ -45,8 +45,8 @@ public class PS2InsercionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        editTextPS2Nombre = findViewById(R.id.editTextPS2Nombre);
-        editTextPS2Abreviatura = findViewById(R.id.editTextPS2Abreviatura);
+        //editTextPS2Nombre = findViewById(R.id.editTextPS2Nombre);
+        //editTextPS2Abreviatura = findViewById(R.id.editTextPS2Abreviatura);
 
         imageViewPS2 = findViewById(R.id.image_view_PS2);
 
@@ -107,8 +107,8 @@ public class PS2InsercionActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuItem menuItem = menu.add(Menu.NONE, G.GUARDAR, Menu.NONE, "Guardar");
-        menuItem.setIcon(R.drawable.ic_action_guardar);
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menuItem.setIcon(R.drawable.ic_action_guardar);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -124,6 +124,10 @@ public class PS2InsercionActivity extends AppCompatActivity {
     }
 
     void attemptGuardar(){
+
+        editTextPS2Nombre = findViewById(R.id.editTextPS2Nombre);
+        editTextPS2Abreviatura = findViewById(R.id.editTextPS2Abreviatura);
+
         editTextPS2Nombre.setError(null);
         editTextPS2Abreviatura.setError(null);
 

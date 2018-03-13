@@ -27,10 +27,10 @@ public class ProveedorDeContenido extends ContentProvider {
 
     private SQLiteDatabase sqlDB;
     public DatabaseHelper dbHelper;
-    private static final String DATABASE_NAME = "Juegos.db";
-    private static final int DATABASE_VERSION = 4001;
+    private static final String DATABASE_NAME = "Playstation2.db";
+    private static final int DATABASE_VERSION = 4005;
 
-    private static final String PS2_TABLE_NAME = "PS2";
+    private static final String PS2_TABLE_NAME = "Playstation2";
     private static final String BITACORA_TABLE_NAME = "Bitacora";
 
     // Indicates an invalid content URI
@@ -112,7 +112,7 @@ public class ProveedorDeContenido extends ContentProvider {
 
             //if (!db.isReadOnly()){
             //Habilitamos la integridad referencial
-            db.execSQL("PRAGMA foreign_keys=ON;");
+            //db.execSQL("PRAGMA foreign_keys=ON;");
             //}
         }
 
@@ -138,17 +138,17 @@ public class ProveedorDeContenido extends ContentProvider {
 
         }
 
-        void inicializarDatos(SQLiteDatabase db){
-
-            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
-                    "VALUES (1,'God of War 2','Santa Monica Estudio')");
-            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
-                    "VALUES (2,'ICO','ICO')");
-            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
-                    "VALUES (3,'Silent Hill 2','Konami')");
-            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
-                    "VALUES (4,'Red Dead Revolver','RDR')");
-        }
+//        void inicializarDatos(SQLiteDatabase db){
+//
+//            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
+//                    "VALUES (1,'God of War 2','Santa Monica Estudio')");
+//            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
+//                    "VALUES (2,'ICO','ICO')");
+//            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
+//                    "VALUES (3,'Silent Hill 2','Konami')");
+//            db.execSQL("INSERT INTO " + PS2_TABLE_NAME + " (" +  Contrato.PS2._ID + "," + Contrato.PS2.NOMBRE + "," + Contrato.PS2.ABREVIATURA + ") " +
+//                    "VALUES (4,'Red Dead Revolver','RDR')");
+//        }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

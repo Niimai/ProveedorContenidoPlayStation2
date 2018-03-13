@@ -20,6 +20,7 @@ import com.example.skywalker.proveedorcontenidoplaystation2.R;
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.G;
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.Utilidades;
 import com.example.skywalker.proveedorcontenidoplaystation2.pojos.PS2;
+import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.Contrato;
 import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.PS2Proveedor;
 
 import java.io.FileNotFoundException;
@@ -52,9 +53,12 @@ public class PS2ActualizacionActivity extends AppCompatActivity {
         editTextPS2Nombre = (EditText) findViewById(R.id.editTextPS2Nombre);
         editTextPS2Abreviatura = (EditText) findViewById(R.id.editTextPS2Abreviatura);
 
-        PS2Id = this.getIntent().getExtras().getInt("ID");
-        editTextPS2Nombre.setText(this.getIntent().getExtras().getString("Nombre"));
-        editTextPS2Abreviatura.setText(this.getIntent().getExtras().getString("Abreviatura"));
+        //PS2Id = this.getIntent().getExtras().getInt("ID");
+        //editTextPS2Nombre.setText(this.getIntent().getExtras().getString("Nombre"));
+        //editTextPS2Abreviatura.setText(this.getIntent().getExtras().getString("Abreviatura"));
+
+        PS2Id = this.getIntent().getExtras().getInt(Contrato.PS2._ID);
+        PS2 playstation2 = PS2Proveedor.read(getContentResolver(), PS2Id);
 
         imageViewPS2 = (ImageView) findViewById(R.id.image_view_PS2);
 

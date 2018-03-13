@@ -22,12 +22,12 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.example.skywalker.proveedorcontenidoplaystation2.textdrawable.TextDrawable;
-//import com.amulyakhare.proveedorcontenidoplaystation2.textdrawable.util.ColorGenerator;
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
+
 import com.example.skywalker.proveedorcontenidoplaystation2.R;
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.G;
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.Utilidades;
-import com.example.skywalker.proveedorcontenidoplaystation2.pojos.PS2;
 import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.PS2Proveedor;
 import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.Contrato;
 
@@ -70,6 +70,7 @@ public class PS2ListFragment extends ListFragment
             MenuItem menuItem = menu.add(Menu.NONE, G.INSERTAR, Menu.NONE, "INSERTAR");
             menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
             menuItem.setIcon(R.drawable.ic_nuevo_registro);
+            super.onCreateOptionsMenu(menu, inflater);
         }
     }
 
@@ -150,12 +151,15 @@ public class PS2ListFragment extends ListFragment
                 case R.id.menu_contextual_editar:
                     Intent intent = new Intent(getActivity(), PS2ActualizacionActivity.class);
                     PS2Id = (Integer) viewSeleccionado.getTag();
-                    Log.i("El identificador 1", "kk"+PS2Id);
-                    PS2 PS2 = PS2Proveedor.read(getActivity().getContentResolver(), PS2Id);
-                    Log.i("El identificador", PS2.getNombre());
-                    intent.putExtra("ID", PS2.getID());
-                    intent.putExtra("Nombre", PS2.getNombre());
-                    intent.putExtra("Abreviatura", PS2.getAbreviatura());
+
+                    //Log.i("El identificador 1", "kk"+PS2Id);
+                    //PS2 PS2 = PS2Proveedor.read(getActivity().getContentResolver(), PS2Id);
+                    //Log.i("El identificador", PS2.getNombre());
+                    //intent.putExtra("ID", PS2.getID());
+                    //intent.putExtra("Nombre", PS2.getNombre());
+                    //intent.putExtra("Abreviatura", PS2.getAbreviatura());
+
+                    intent.putExtra(Contrato.PS2._ID, PS2Id);
                     startActivity(intent);
                     break;
                 default:
@@ -197,7 +201,7 @@ public class PS2ListFragment extends ListFragment
         // Swap the new cursor in.  (The framework will take care of closing the
         // old cursor once we return.)
 
-        Uri laUriBase = Uri.parse("content://"+Contrato.AUTHORITY+"/PS2");
+        Uri laUriBase = Uri.parse("content://"+Contrato.AUTHORITY+"/Playstation2");
         data.setNotificationUri(getActivity().getContentResolver(), laUriBase);
 
         mAdapter.swapCursor(data);
@@ -232,11 +236,11 @@ public class PS2ListFragment extends ListFragment
             try {
                 Utilidades.loadImageFromStorage(getActivity(), "img_" + ID + ".jpg", image);
             } catch (FileNotFoundException e) {
-                /*ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+                ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
                 int color = generator.getColor(abreviatura); //Genera un color según el nombre
                 TextDrawable drawable = TextDrawable.builder()
-                        .buildRound(abreviatura.substring(0,1), color);
-                image.setImageDrawable(drawable);*/
+                        .buildRound(nombre.substring(0,1), color);
+                image.setImageDrawable(drawable);
             }
 
             view.setTag(ID);

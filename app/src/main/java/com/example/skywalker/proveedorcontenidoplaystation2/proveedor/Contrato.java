@@ -13,7 +13,7 @@ public class Contrato {
     public static final class PS2 implements BaseColumns {
 
         public static final Uri CONTENT_URI = Uri
-                .parse("content://"+AUTHORITY+"/PS2");
+                .parse("content://"+AUTHORITY+"/Playstation2");
 
         // Table column
         public static final String NOMBRE = "Nombre";

@@ -34,7 +34,7 @@ public class AppController extends Application {
     // An account type, in the form of a domain name
     public static final String ACCOUNT_TYPE = "com.example.skywalker.proveedorcontenidoplaystation2";
     // The account name
-    public static final String ACCOUNT = "Paco";
+    public static final String ACCOUNT = "Playstation2";
     // Sync interval constants
     public static final long SYNC_INTERVAL = G.SYNC_INTERVAL; // Cada minuto
 
