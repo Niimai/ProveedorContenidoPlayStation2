@@ -16,11 +16,11 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_height="176dp"
+        android:paddingTop="50dp"
+        app:srcCompat="@drawable/ps2_2" />
 
-    <TextView
+    <!--TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -31,6 +31,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="    DATA BASE" />
+        android:text="    DATA BASE" /-->
 
 </LinearLayout>
