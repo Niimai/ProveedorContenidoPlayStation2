@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.skywalker.proveedorcontenidoplaystation2">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".aplicacion.AppController"
@@ -56,16 +56,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PS2.PS2Activity" />
         </activity>
+
         <provider
             android:name=".proveedor.ProveedorDeContenido"
             android:authorities="com.example.skywalker.proveedorcontenidoplaystation2.proveedor.ProveedorDeContenido"
             android:enabled="true"
             android:exported="true"
-            android:syncable="true"/>
+            android:syncable="true" />
 
         <service
             android:name=".authenticator.AuthenticatorService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
@@ -75,9 +76,9 @@
                 android:resource="@xml/authenticator" />
         </service>
         <service
-                android:name=".sync.SyncService"
-                android:exported="false"
-                android:process=":sync">
+            android:name=".sync.SyncService"
+            android:exported="false"
+            android:process=":sync">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>
@@ -86,6 +87,11 @@
                 android:name="android.accounts.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
+
+        <activity
+            android:name=".TabsActivity"
+            android:label="@string/title_activity_tabs"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

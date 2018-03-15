@@ -31,8 +31,7 @@
              have to call it "@android:id/list" so ListActivity will
              find it -->
         <ListView android:id="@android:id/list"
-            android:layout_marginTop="?android:attr/actionBarSize"
-            android:paddingTop="@dimen/appbar_padding_top"
+            android:layout_marginTop="10px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawSelectorOnTop="false"/>
