@@ -28,6 +28,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.example.skywalker.proveedorcontenidoplaystation2.R;
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.G;
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.Utilidades;
+import com.example.skywalker.proveedorcontenidoplaystation2.pojos.PS2;
 import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.PS2Proveedor;
 import com.example.skywalker.proveedorcontenidoplaystation2.proveedor.Contrato;
 
@@ -153,11 +154,11 @@ public class PS2ListFragment extends ListFragment
                     PS2Id = (Integer) viewSeleccionado.getTag();
 
                     //Log.i("El identificador 1", "kk"+PS2Id);
-                    //PS2 PS2 = PS2Proveedor.read(getActivity().getContentResolver(), PS2Id);
+                    PS2 PS2 = PS2Proveedor.read(getActivity().getContentResolver(), PS2Id);
                     //Log.i("El identificador", PS2.getNombre());
                     //intent.putExtra("ID", PS2.getID());
-                    //intent.putExtra("Nombre", PS2.getNombre());
-                    //intent.putExtra("Abreviatura", PS2.getAbreviatura());
+                    intent.putExtra("Nombre", PS2.getNombre());
+                    intent.putExtra("Abreviatura", PS2.getAbreviatura());
 
                     intent.putExtra(Contrato.PS2._ID, PS2Id);
                     startActivity(intent);

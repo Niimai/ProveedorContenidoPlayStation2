@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,8 +55,8 @@ public class PS2ActualizacionActivity extends AppCompatActivity {
         editTextPS2Abreviatura = (EditText) findViewById(R.id.editTextPS2Abreviatura);
 
         //PS2Id = this.getIntent().getExtras().getInt("ID");
-        //editTextPS2Nombre.setText(this.getIntent().getExtras().getString("Nombre"));
-        //editTextPS2Abreviatura.setText(this.getIntent().getExtras().getString("Abreviatura"));
+        editTextPS2Nombre.setText(this.getIntent().getExtras().getString("Nombre"));
+        editTextPS2Abreviatura.setText(this.getIntent().getExtras().getString("Abreviatura"));
 
         PS2Id = this.getIntent().getExtras().getInt(Contrato.PS2._ID);
         PS2 playstation2 = PS2Proveedor.read(getContentResolver(), PS2Id);
@@ -143,6 +144,7 @@ public class PS2ActualizacionActivity extends AppCompatActivity {
     }
 
     void attemptGuardar(){
+        Log.d("testfoto","Entra en guardar modificacion");
         editTextPS2Nombre.setError(null);
         editTextPS2Abreviatura.setError(null);
 
@@ -160,9 +162,8 @@ public class PS2ActualizacionActivity extends AppCompatActivity {
             editTextPS2Abreviatura.requestFocus();
             return;
         }
-
-        PS2 juego = new PS2(PS2Id, nombre, abreviatura/*, foto*/);
-        PS2Proveedor.updateConBitacora(getContentResolver(), juego);
+        PS2 juego = new PS2(PS2Id, nombre, abreviatura, foto);
+        PS2Proveedor.updateConBitacora(getContentResolver(), juego, this);
         finish();
     }
 

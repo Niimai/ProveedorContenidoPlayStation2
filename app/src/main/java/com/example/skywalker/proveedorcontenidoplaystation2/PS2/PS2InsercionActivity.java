@@ -34,7 +34,6 @@ public class PS2InsercionActivity extends AppCompatActivity {
     final int PETICION_GALERIA = 2;
 
     Bitmap foto = null;
-
     ImageView imageViewPS2;
 
     @Override
@@ -149,8 +148,8 @@ public class PS2InsercionActivity extends AppCompatActivity {
 
 
         //PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura/*, foto*/);
-        PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura);
-        PS2Proveedor.insertConBitacora(getContentResolver(),juego);
+        PS2 juego = new PS2(G.SIN_VALOR_INT, nombre, abreviatura, foto);
+        PS2Proveedor.insertConBitacora(getContentResolver(),juego, this);
 
         finish();
     }

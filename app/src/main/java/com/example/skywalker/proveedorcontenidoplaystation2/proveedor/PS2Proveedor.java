@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.G;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  */
 
 public class PS2Proveedor {
-    static public Uri insertRecord(ContentResolver resolvedor, PS2 juego){
+    static public Uri insertRecord(ContentResolver resolvedor, PS2 juego, Context contexto){
         Uri uri = Contrato.PS2.CONTENT_URI;
 
         ContentValues values = new ContentValues();
@@ -32,30 +33,28 @@ public class PS2Proveedor {
 
         Uri uriResultado = resolvedor.insert(uri, values);
 
-        return uriResultado;
+        String juegoId = uriResultado.getLastPathSegment();
 
-        //return resolvedor.insert(uri, values);
-
-        //String juegoId = uriResultado.getLastPathSegment();
-
-        /*if(juego.getImagen()!=null){
+        if(juego.getImagen()!=null){
             try {
                 Utilidades.storeImage(juego.getImagen(), contexto, "img_" + juegoId + ".jpg");
             } catch (IOException e) {
                 Toast.makeText(contexto,"No se pudo guardar la imagen", Toast.LENGTH_LONG).show();
             }
-        }*/
+        }
+
+        return uriResultado;
     }
 
-    static public void insertConBitacora (ContentResolver resolvedor, PS2 juego) {
-        Uri uri = insertRecord(resolvedor, juego);
+    static public void insertConBitacora (ContentResolver resolvedor, PS2 juego, Context contexto) {
+        Uri uri = insertRecord(resolvedor, juego, contexto);
         juego.setID(Integer.parseInt(uri.getLastPathSegment()));
 
         Bitacora bitacora = new Bitacora();
         bitacora.setID_juego(juego.getID());
         bitacora.setOperacion(G.OPERACION_INSERTAR);
 
-        BitacoraProveedor.insert(resolvedor, bitacora);
+        BitacoraProveedor.insert(resolvedor, bitacora, contexto);
     }
 
     static public void deleteRecord(ContentResolver resolver, int juegoId){
@@ -70,10 +69,13 @@ public class PS2Proveedor {
         bitacora.setID_juego(juegoId);
         bitacora.setOperacion(G.OPERACION_BORRAR);
 
-        BitacoraProveedor.insert(resolvedor, bitacora);
+        BitacoraProveedor.insert(resolvedor, bitacora, null);
     }
 
-    static public void updateRecord(ContentResolver resolver, PS2 juego){
+    static public void updateRecord(ContentResolver resolver, PS2 juego, Context contexto){
+
+        Log.d("testfoto","Entra en updateRecord - ps2proveedor");
+
         Uri uri = Uri.parse(Contrato.PS2.CONTENT_URI + "/" + juego.getID());
 
         ContentValues values = new ContentValues();
@@ -82,24 +84,25 @@ public class PS2Proveedor {
 
         resolver.update(uri, values, null, null);
 
-    /*    if(juego.getImagen()!=null){
+        if(juego.getImagen()!=null){
             try {
                 Utilidades.storeImage(juego.getImagen(), contexto, "img_" + juego.getID() + ".jpg");
             } catch (IOException e) {
                 Toast.makeText(contexto,"No se pudo guardar la imagen", Toast.LENGTH_LONG).show();
             }
-        } */
+        }
     }
 
-    static public void updateConBitacora (ContentResolver resolvedor, PS2 juego) {
-        updateRecord(resolvedor, juego);
+    static public void updateConBitacora (ContentResolver resolvedor, PS2 juego, Context contexto) {
+        Log.d("testfoto","Entra en updateConBitacora - ps2proveedor");
 
+        updateRecord(resolvedor, juego, contexto);
 
         Bitacora bitacora = new Bitacora();
         bitacora.setID_juego(juego.getID());
         bitacora.setOperacion(G.OPERACION_MODIFICAR);
 
-        BitacoraProveedor.insert(resolvedor, bitacora);
+        BitacoraProveedor.insert(resolvedor, bitacora, contexto);
     }
 
     static public PS2 read(ContentResolver resolver, int juegoId) {

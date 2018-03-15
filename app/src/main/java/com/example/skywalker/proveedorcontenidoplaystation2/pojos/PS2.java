@@ -12,7 +12,7 @@ public class PS2 {
     private int ID;
     private String nombre;
     private String abreviatura;
-  //private Bitmap imagen;
+    private Bitmap imagen;
 
     public PS2(){
         this.ID = G.SIN_VALOR_INT;
@@ -28,9 +28,16 @@ public class PS2 {
       //this.imagen = imagen;
     }
 
-    //public Bitmap getImagen() {return imagen;}
+    public PS2(int ps2Id, String nombre, String abreviatura, Bitmap imagen) {
+        this.ID = ps2Id;
+        this.nombre = nombre;
+        this.abreviatura = abreviatura;
+        this.imagen = imagen;
+    }
 
-    //public void setImagen(Bitmap imagen) {this.imagen = imagen;}
+    public Bitmap getImagen() {return imagen;}
+
+    public void setImagen(Bitmap imagen) {this.imagen = imagen;}
 
     public int getID() {
         return ID;

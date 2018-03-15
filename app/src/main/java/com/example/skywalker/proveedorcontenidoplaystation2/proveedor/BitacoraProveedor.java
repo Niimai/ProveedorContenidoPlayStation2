@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.skywalker.proveedorcontenidoplaystation2.constantes.G;
@@ -20,7 +21,8 @@ import java.util.ArrayList;
  */
 
 public class BitacoraProveedor {
-    static public void insert(ContentResolver resolvedor, Bitacora bitacora){
+    static public void insert(ContentResolver resolvedor, Bitacora bitacora, Context contexto){
+        Log.d("testfoto","Entra en insertar de bitacoraproveedor");
         Uri uri = Contrato.Bitacora.CONTENT_URI;
 
         ContentValues values = new ContentValues();
