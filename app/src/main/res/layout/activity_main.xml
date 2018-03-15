@@ -40,6 +40,15 @@
         android:layout_centerHorizontal="true"
         android:text="Elegir Foto de la Galeria" />
 
+    <Button
+        android:id="@+id/buttonNavigationDrawer"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/buttonGaleria"
+        android:layout_below="@+id/buttonGaleria"
+        android:text="Utilidades"
+        android:textColor="@android:color/holo_blue_dark" />
+
     <ImageView
         android:id="@+id/image_view_imagen"
         android:layout_width="match_parent"

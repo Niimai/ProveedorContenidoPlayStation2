@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.buttonIrALosJuegos);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button button1 = (Button) findViewById(R.id.buttonIrALosJuegos);
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TabsActivity.class);
@@ -55,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         imageViewImagen = (ImageView) findViewById(R.id.image_view_imagen);
+
+        Button button2 = (Button) findViewById(R.id.buttonNavigationDrawer);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NavigationDrawerActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
