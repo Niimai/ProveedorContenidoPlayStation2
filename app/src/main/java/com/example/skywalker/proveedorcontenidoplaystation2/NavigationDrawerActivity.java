@@ -93,7 +93,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            //intent.putExtra(Intent.EXTRA_TEXT, "Nintendo!!");
+            intent.putExtra(Intent.EXTRA_TEXT, "Conectando desde mi app!!");
             startActivity(Intent.createChooser(intent, "Compartir con"));
 
         } else if (id == R.id.nav_contact) {
