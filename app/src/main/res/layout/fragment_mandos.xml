@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
     tools:context="com.example.skywalker.proveedorcontenidoplaystation2.MandosFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -9,5 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
+
+    <ImageView
+        android:id="@+id/image_view_imagen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/buttonGaleria"
+        android:layout_marginTop="204dp"
+        android:src="@drawable/ps2" />
 
 </FrameLayout>
