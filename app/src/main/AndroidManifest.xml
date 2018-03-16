@@ -87,7 +87,7 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.accounts.SyncAdapter"
+                android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
 
